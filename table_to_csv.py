@@ -47,7 +47,6 @@ def main():
     for row in fr:
         result += row
     result = result.replace("\n", "").replace("/t", "1\n").strip()
-    print(result)
     count = 0
     for item in result.splitlines():
         if (re.search(r"able>",item)):
@@ -79,7 +78,6 @@ def main():
             if (len(finalTable[i][j]) < count):
                 for k in range(count-len(finalTable[i][j])):
                     finalTable[i][j].append("")
-    print(finalTable)
     writeFile(finalTable)
 
 if __name__ == '__main__':
