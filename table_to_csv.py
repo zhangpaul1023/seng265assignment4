@@ -20,8 +20,7 @@ def deleteSpace(string):
     return string
 
 def writeFile(finalTable):
-    fileName = sys.argv[2]
-    fw = open(fileName, "w")
+    fw = sys.stdout
     count = 1
     for i in range (1, len(finalTable)):
         title = "TABLE " + str(count) + ":\n"
@@ -41,13 +40,11 @@ def main():
     tableList = []
     itemList = []
     finalTable = []
-    fileName = sys.argv[1]
-    fr = open(fileName, "r")
+    content = sys.stdin.readlines()
     result = ""
-    for row in fr:
+    for row in content:
         result += row
     result = result.replace("\n", "").replace("/t", "1\n").strip()
-    print(result)
     count = 0
     for item in result.splitlines():
         if (re.search(r"able>",item)):
@@ -79,7 +76,6 @@ def main():
             if (len(finalTable[i][j]) < count):
                 for k in range(count-len(finalTable[i][j])):
                     finalTable[i][j].append("")
-    print(finalTable)
     writeFile(finalTable)
 
 if __name__ == '__main__':
